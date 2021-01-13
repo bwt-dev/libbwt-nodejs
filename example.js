@@ -1,4 +1,4 @@
-const BwtDaemon = require('bwt-daemon')
+const { BwtDaemon } = require('libbwt')
 
 ;(async function(){
   const my_desc = 'wpkh(tpubD6NzVbkrYhZ4Ya1aR2od7JTGK6b44cwKhWzrvrTeTWFrzGokdAGHrZLK6BdYwpx9K7EoY38LzHva3SWwF8yRrXM9x9DQ3jCGKZKt1nQEz7n/0/*)';

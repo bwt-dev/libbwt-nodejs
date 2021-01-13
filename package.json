@@ -1,5 +1,5 @@
 {
-  "name": "bwt-daemon",
+  "name": "libbwt",
   "version": "0.2.0",
   "author": "Nadav Ivgi",
   "description": "A library for programmatically controlling the Bitcoin Wallet Tracker daemons",
@@ -10,9 +10,9 @@
     "bitcoin-api",
     "xpub"
   ],
-  "repository": "https://github.com/shesek/bwt.git",
+  "repository": "https://github.com/bwt-dev/libbwt-nodejs.git",
   "license": "MIT",
-  "homepage": "https://github.com/shesek/bwt",
+  "homepage": "https://github.com/bwt-dev/libbwt-nodejs",
   "scripts": {
     "dist": "./build.sh",
     "postinstall": "./postinstall.js"

@@ -1,4 +1,4 @@
-# bwt-daemon
+# libbwt-nodejs
 
 A nodejs library for programmatically managing the Bitcoin Wallet Tracker Electrum RPC and HTTP API servers
 using the [`libbwt` C FFI interface](https://github.com/bwt-dev/libbwt).
@@ -8,21 +8,21 @@ using the [`libbwt` C FFI interface](https://github.com/bwt-dev/libbwt).
 ### Install
 
 ```
-$ npm install bwt-daemon
+$ npm install libbwt
 ```
 
 This will download the `libbwt` library for your platform.
 The currently supported platforms are Linux, Mac, Windows and ARMv7/8.
 
 The hash of the downloaded library is verified against the
-[`SHA256SUMS`](https://github.com/shesek/bwt/blob/master/contrib/nodejs-bwt-daemon/SHA256SUMS)
+[`SHA256SUMS`](https://github.com/bwt-dev/libbwt-nodejs/blob/master/SHA256SUMS)
 file that ships with the npm package.
 
 The library comes with the electrum and http servers by default.
-If you're only interested in the Electrum server, you can install with `BWT_VARIANT=electrum_only npm install bwt-daemon`.
+If you're only interested in the Electrum server, you can install with `BWT_VARIANT=electrum_only npm install libbwt`.
 This reduces the download size by ~1.6MB.
 
-> Note: `bwt-daemon` uses [`ffi-napi`](https://github.com/node-ffi-napi/node-ffi-napi), which requires
+> Note: `libbwt-nodejs` uses [`ffi-napi`](https://github.com/node-ffi-napi/node-ffi-napi), which requires
 > a recent nodejs version. If you're running into errors during installation or segmentation faults,
 > try updating to a newer version.
 
@@ -32,7 +32,7 @@ Below is a minimally viable setup. If bitcoind is running locally on the default
 and with cookie auth enabled (the default), this should Just Work™ \o/
 
 ```js
-import BwtDaemon from 'bwt-daemon'
+import { BwtDaemon } from 'libbwt'
 
 const bwtd = await BwtDaemon({
   xpubs: [ 'xpub66...' ],
@@ -82,7 +82,7 @@ console.log('bwt http server ready on', bwtd.http_url)
 bwtd.shutdown()
 ```
 
-See [`example.js`](https://github.com/shesek/bwt/blob/master/contrib/nodejs-bwt-daemon/example.js) for an even more complete
+See [`example.js`](https://github.com/bwt-dev/libbwt-nodejs/blob/master/example.js) for an even more complete
 example, including connecting to the HTTP API.
 
 The full list of options is available in the [libbwt documentation](https://github.com/bwt-dev/libbwt#config-options).

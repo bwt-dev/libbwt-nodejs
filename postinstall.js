@@ -45,7 +45,7 @@ async function download(version, variant=null) {
 // Download the file while stream-hashing its contents
 async function getFile(url, dest) {
   return new Promise((resolve, reject) => {
-    const options = { headers: { 'user-agent': 'bwt-daemon' } }
+    const options = { headers: { 'user-agent': 'libbwt' } }
     https.get(url, options, resp => {
       if (resp.statusCode == 302) {
         return getFile(resp.headers.location, dest).then(resolve, reject)

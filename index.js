@@ -2,7 +2,7 @@ const ffi = require('ffi-napi')
     , ref = require('ref-napi')
     , path = require('path')
     , EventEmitter = require('events')
-    , debug = require('debug')('bwt-daemon')
+    , debug = require('debug')('libbwt')
 
 const LIB_PATH = process.env.BWT_LIB || path.join(__dirname, 'libbwt')
 
@@ -109,9 +109,9 @@ class BwtDaemon extends EventEmitter {
 }
 
 // optional 'new'
-exports = module.exports = function(opt) { return new BwtDaemon(opt) }
-exports.BwtDaemon = BwtDaemon
-exports.start = BwtDaemon.start = opt => new BwtDaemon(opt).start()
+exports.BwtDaemon = module.exports = function(opt) { return new BwtDaemon(opt) }
+exports._BwtDaemon = BwtDaemon
+exports.start = opt => new BwtDaemon(opt).start()
 
 // Utility
 
