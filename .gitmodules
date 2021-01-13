@@ -1,0 +1,3 @@
+[submodule "libbwt"]
+	path = libbwt
+	url = https://github.com/bwt-dev/libbwt
