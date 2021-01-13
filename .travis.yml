@@ -1,0 +1,40 @@
+env: [ CARGO_TERM_COLOR=always ]
+cache:
+  directories: [ $HOME/docker-cache ]
+jobs:
+  include:
+    # Prepare docker images as a separate step to avoid hitting Travis's time limit
+    - stage: Prepare
+      name: Prepare build env
+      script: >
+        git submodule update --init --recursive &&
+        docker build -t bwt-builder - < libbwt/bwt/scripts/builder.Dockerfile &&
+        docker build -t bwt-builder-osx - < libbwt/bwt/scripts/builder-osx.Dockerfile &&
+
+        rm -rf ~/docker-cache && mkdir ~/docker-cache &&
+        docker save bwt-builder bwt-builder-osx | gzip -2 > ~/docker-cache/images.tar.gz
+
+
+    - stage: Reproducible builds
+      name: Reproducible builds
+      script:
+      - >
+        git submodule update --init --recursive &&
+        gzip -d < ~/docker-cache/images.tar.gz | docker load &&
+        echo -e tr''avis_fo''ld:start:build\\nBuilding... &&
+
+        echo Building libbwt... &&
+        docker run -u `id -u` -v `pwd`/libbwt:/usr/src/libbwt -w /usr/src/libbwt \
+                   --entrypoint scripts/build.sh bwt-builder &&
+        docker run -u `id -u` -v `pwd`/libbwt:/usr/src/libbwt -w /usr/src/libbwt \
+                   --entrypoint scripts/build.sh bwt-builder-osx &&
+
+        echo Packaging libbwt-nodejs... &&
+        docker run -u `id -u` -v `pwd`:/usr/src/libbwt-nodejs -w /usr/src/libbwt-nodejs \
+                   -e LIBBWT_DIST=/usr/src/libbwt-nodejs/libbwt/dist \
+                   --entrypoint scripts/build.sh node:14 &&
+        echo tr''avis_fol''d:end:build
+      - >
+        echo '-----BEGIN SHA256SUM-----' &&
+        (cd dist && sha256sum *.tgz | sort) &&
+        echo
