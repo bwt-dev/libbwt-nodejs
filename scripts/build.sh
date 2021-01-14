@@ -16,6 +16,7 @@ mkdir -p dist && rm -rf dist/*
 
 # Update SHA256SUMS
 (cd $LIBBWT_DIST && sha256sum *.tar.gz) | sort > SHA256SUMS
+chmod 664 SHA256SUMS
 
 # Update version
 npm version --allow-same-version --no-git-tag-version $version
