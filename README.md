@@ -111,7 +111,7 @@ The will download the `libbwt` library for your platform as a postinstall step.
 The currently supported platforms are Linux, Mac, Windows and ARMv7/8.
 
 The hash of the downloaded library is verified against the
-[`SHA256SUMS`](SHA256SUMS) file that ships with the npm package.
+[`SHA256SUMS`](LIBBWT-SHA256SUMS) file that ships with the npm package.
 
 > Note: `libbwt-nodejs` uses [`ffi-napi`](https://github.com/node-ffi-napi/node-ffi-napi), which requires
 > a recent nodejs version. If you're running into errors during installation or segmentation faults,
@@ -158,7 +158,7 @@ copy the `libbwt.so`/`libbwt.dylib`/`bwt.dll` file into the root directory of `l
 
 ## Reproducible builds
 
-The nodejs package (including the `SHA256SUMS` file with the `libbwt` hashes for all platforms)
+The nodejs package (including the `LIBBWT-SHA256SUMS` file with the `libbwt` hashes for all platforms)
 can be reproduced in a Docker container environment as follows:
 
 ```bash

@@ -67,11 +67,11 @@ async function getFile(url, dest) {
 
 // Read the expected sha256 hash out of the SHA256SUMS file
 function getExpectedHash(dist_name) {
-  let line = fs.readFileSync(path.join(__dirname, 'SHA256SUMS'))
+  let line = fs.readFileSync(path.join(__dirname, 'LIBBWT-SHA256SUMS'))
     .toString()
     .split('\n')
     .find(line => line.endsWith(` ${dist_name}.tar.gz`))
-  if (!line) throw new Error(`Cannot find ${dist_name} in SHA256SUMS`)
+  if (!line) throw new Error(`Cannot find ${dist_name} in LIBBWT-SHA256SUMS`)
   return line.split(' ')[0]
 }
 

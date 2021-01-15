@@ -38,11 +38,11 @@ if [ -z "$SKIP_BUILD" ]; then
 fi
 
 # Sign
-gpg --clearsign --digest-algo sha256 SHA256SUMS > SHA256SUMS.asc
+(cd dist && sha256sum *.tgz) | gpg --clearsign --digest-algo sha256 > SHA256SUMS.asc
 
 # Git tag and push
 if [ -z "$SKIP_GIT" ]; then
-  git add {package,npm-shrinkwrap}.json {CHANGELOG,README}.md SHA256SUMS SHA256SUMS.asc libbwt
+  git add {package,npm-shrinkwrap}.json {CHANGELOG,README}.md LIBBWT-SHA256SUMS SHA256SUMS.asc libbwt
   git commit -S -m v$version
   git tag --sign -m "$changelog" v$version
   git branch -f latest HEAD
