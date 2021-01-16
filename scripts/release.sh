@@ -10,7 +10,7 @@ git diff-index --quiet HEAD || (echo >&2 git working directory is dirty && exit 
 [ -n "$BWT_BASE" ] || (echo >&2 BWT_BASE is required && exit 1)
 [ -n "$LIBBWT_COMMIT" ] || (echo >&2 LIBBWT_COMMIT is required && exit 1)
 
-(cd libbwt && git fetch local && git reset --hard $LIBBWT_COMMIT)
+(cd libbwt && git fetch local && git reset --hard $LIBBWT_COMMIT && git submodule update --init)
 
 version=$(grep -E '^version =' libbwt/Cargo.toml | cut -d'"' -f2)
 
@@ -33,8 +33,6 @@ if [ -z "$SKIP_BUILD" ]; then
   docker run -it --rm -u `id -u` -v $(pwd):/usr/src/libbwt-nodejs -w /usr/src/libbwt-nodejs \
     -v $BWT_BASE/libbwt/dist:/usr/src/libbwt-dist -e LIBBWT_DIST=/usr/src/libbwt-dist \
     $node_image ./scripts/build.sh
-
-  rm -rf dist/*/ # remove subdirectories, keep files only
 fi
 
 # Sign
