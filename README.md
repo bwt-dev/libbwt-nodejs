@@ -27,7 +27,7 @@ Support development: [⛓️ on-chain or ⚡ lightning via BTCPay](https://btcpa
 - [Reproducible builds](#reproducible-builds)
 - [License](#license)
 
-> Also see: [bwt](https://github.com/bwt-dev/bwt), [libbwt](https://github.com/bwt-dev/libbwt) and [libbwt-nodejs](https://github.com/bwt-dev/libbwt-nodejs).
+> Also see: [bwt](https://github.com/bwt-dev/bwt), [libbwt](https://github.com/bwt-dev/libbwt) and [libbwt-jni](https://github.com/bwt-dev/libbwt-jni).
 
 ## Usage
 
@@ -62,11 +62,7 @@ const bwtd = await BwtDaemon({
   // Rescan since timestamp. Accepts unix timestamps, date strings, Date objects, or 'now' to look for new transactions only
   rescan_since: '2020-01-01',
 
-  // Enable HTTP and Electrum servers
-  http: true,
-  electrum: true,
-
-  // Bind on port 0 to use any available port (the default)
+  // Enable HTTP and Electrum servers (use port 0 to bind on any available port)
   electrum_addr: '127.0.0.1:0',
   http_addr: '127.0.0.1:0',
 
