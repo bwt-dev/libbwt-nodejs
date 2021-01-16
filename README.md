@@ -73,8 +73,12 @@ const bwtd = await BwtDaemon({
   // Set the gap limit of watched unused addresses
   gap_limit: 100,
 
-  // Progress notifications for history scanning (a full rescan from genesis can take 20-30 minutes)
-  progress: (type, progress, detail) => console.log('bwt %s progress %f%%', type, progress*100, detail),
+  // Progress notifications for initial block download and wallet rescanning
+  sync_progress: (progress, tip_time) =>
+    console.log(`Initial block download in progress... (${progress*100}% done, synced up to ${tip_time})`),
+  scan_progress: (progress, eta) =>
+    console.log(`Wallet rescanning in progress... (${progress*100} done, ETA ${eta} seconds)`),
+  }
 }).start()
 
 // Get the assigned address/port for the Electrum/HTTP servers
@@ -90,7 +94,8 @@ See [`example.js`](example.js) for a more complete example, including connecting
 The list of options is available in the [libbwt C FFI documentation](https://github.com/bwt-dev/libbwt#config-options).
 The nodejs wrapper also provides the following additional options:
 
-- `progress` - callback for progress update notifications, invoked with `(type, progress, detail)` (optional)
+- `sync_progress` - callback for IBD progress notifications, invoked with `(progress, tip_time)`
+- `scan_progress` - callback for wallet rescan progress notifications, invoked with `(progress, eta)`
 - `electrum` - setting to `true` is an alias for `electrum_addr=127.0.0.1:0`
 - `http` - setting to `true` is an alias for `http_addr=127.0.0.1:0`
 

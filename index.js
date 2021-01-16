@@ -42,7 +42,9 @@ class BwtDaemon extends EventEmitter {
   constructor(options) {
     super()
 
-    if (options.progress) this.on('progress', take_prop(options, 'progress'))
+    if (options.sync_progress) this.on('progress:sync', take_prop(options, 'sync_progress'))
+    if (options.scan_progress) this.on('progress:scan', take_prop(options, 'scan_progress'))
+
     this.options = normalize_options(options)
 
     this.ready = new Promise((resolve, reject) => {
@@ -88,10 +90,11 @@ class BwtDaemon extends EventEmitter {
         this.emit('error', detail_s)
         break
       case 'progress:sync':
-        this.emit('progress', 'sync', progress_n, { tip_time: detail_n })
+        const tip_time = new Date(detail_n*1000)
+        this.emit('progress:sync', progress_n, tip_time)
         break
       case 'progress:scan':
-        this.emit('progress', 'scan', progress_n, { eta: detail_n })
+        this.emit('progress:scan', progress_n, detail_n /*ETA in seconds*/)
         break
       case 'ready:http':
 			  this.http_addr = detail_s
