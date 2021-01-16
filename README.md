@@ -73,8 +73,7 @@ const bwtd = await BwtDaemon({
   sync_progress: (progress, tip_time) =>
     console.log(`Initial block download in progress... (${progress*100}% done, synced up to ${tip_time})`),
   scan_progress: (progress, eta) =>
-    console.log(`Wallet rescanning in progress... (${progress*100} done, ETA ${eta} seconds)`),
-  }
+    console.log(`Wallet rescanning in progress... (${progress*100}% done, ETA ${eta} seconds)`),
 }).start()
 
 // Get the assigned address/port for the Electrum/HTTP servers
