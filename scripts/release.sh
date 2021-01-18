@@ -3,7 +3,8 @@ set -xeo pipefail
 shopt -s expand_aliases
 
 gh_repo=bwt-dev/libbwt-nodejs
-node_image=node:14
+# node:14
+node_image=node@sha256:04a33dac55af8d3170bffc91ca31fe8000b96ae1bab1a090deb920ca2ca2a38e
 
 git diff-index --quiet HEAD || (echo >&2 git working directory is dirty && exit 1)
 
