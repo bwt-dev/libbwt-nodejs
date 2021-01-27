@@ -86,6 +86,9 @@ bwtd.shutdown()
 
 See [`example.js`](example.js) for a more complete example, including connecting to the HTTP API.
 
+The API servers are unauthenticated by default, but
+[authentication can be enabled](https://github.com/bwt-dev/bwt/blob/master/doc/auth.md).
+
 The list of options is available in the [libbwt C FFI documentation](https://github.com/bwt-dev/libbwt#config-options).
 The nodejs wrapper also provides the following additional options:
 

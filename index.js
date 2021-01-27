@@ -96,12 +96,15 @@ class BwtDaemon extends EventEmitter {
       case 'progress:scan':
         this.emit('progress:scan', progress_n, detail_n /*ETA in seconds*/)
         break
+      case 'access_token':
+        this.access_token = detail_s
+        break
       case 'ready:http':
-			  this.http_addr = detail_s
-			  this.http_url = `http://${this.http_addr}/`
-				break
+        this.http_addr = detail_s
+        this.http_url = `http://${this.http_addr}/`
+        break
       case 'ready:electrum':
-			  this.electrum_addr = detail_s
+        this.electrum_addr = detail_s
         break
       case 'ready':
         this.emit('ready')
