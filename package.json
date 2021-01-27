@@ -18,10 +18,10 @@
     "postinstall": "./postinstall.js"
   },
   "dependencies": {
-    "debug": "^4.2.0",
+    "debug": "^4.3.1",
     "ffi-napi": "^3.0.1",
     "ref-napi": "^3.0.1",
-    "tar": "^6.0.5"
+    "tar": "^6.1.0"
   },
   "files": [
     "index.js",
