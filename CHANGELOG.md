@@ -1,3 +1,7 @@
+## Unreleased
+
+- Enable authentication via ephemeral access token
+
 ## 0.2.1-1 - 2021-01-16
 
 - Split the `progress` callback into `sync_progress` and `scan_progress`
