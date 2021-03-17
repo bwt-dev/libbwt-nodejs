@@ -139,20 +139,20 @@ and [this video presentation](https://youtu.be/SXJaN2T3M10?t=4).
 
 ```bash
 # Download
-$ wget https://github.com/bwt-dev/libbwt-nodejs/releases/download/v0.2.2/libbwt-nodejs-0.2.2.tgz
+$ wget https://github.com/bwt-dev/libbwt-nodejs/releases/download/v0.2.3/libbwt-nodejs-0.2.3.tgz
 
 # Fetch public key
 $ gpg --keyserver keyserver.ubuntu.com --recv-keys FCF19B67866562F08A43AAD681F6104CD0F150FC
 
 # Verify signature
-$ wget -qO - https://github.com/bwt-dev/libbwt-nodejs/releases/download/v0.2.2/SHA256SUMS.asc \
+$ wget -qO - https://github.com/bwt-dev/libbwt-nodejs/releases/download/v0.2.3/SHA256SUMS.asc \
   | gpg --decrypt - | sha256sum -c -
 
 # Install
-$ npm install libbwt-nodejs-0.2.2.tgz
+$ npm install libbwt-nodejs-0.2.3.tgz
 ```
 
-The signature verification should show `Good signature from "Nadav Ivgi <nadav@shesek.info>" ... Primary key fingerprint: FCF1 9B67 ...` and `libbwt-nodejs-0.2.2.tgz: OK`.
+The signature verification should show `Good signature from "Nadav Ivgi <nadav@shesek.info>" ... Primary key fingerprint: FCF1 9B67 ...` and `libbwt-nodejs-0.2.3.tgz: OK`.
 
 ## Building from source
 
